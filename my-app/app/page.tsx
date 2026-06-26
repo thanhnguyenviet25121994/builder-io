@@ -58,7 +58,7 @@ export default function Home() {
               {
                 icon: "🔒",
                 title: "Cybersecurity",
-                desc: "Protect your business with advanced threat detection, compliance audits, and security assessments."
+                desc: "Protect your business with advanced threat detection, compliance audits, and security assessments.123465"
               },
               {
                 icon: "💻",
