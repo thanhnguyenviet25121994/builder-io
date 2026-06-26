@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black relative">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
-          className="dark:invert"
+          className="dark:invert mx-auto"
           src="/next.svg"
           alt="Next.js logo"
           width={100}
@@ -56,6 +56,9 @@ export default function Home() {
           </a>
         </div>
       </main>
+      <button className="fixed bottom-6 left-6 px-4 py-2 bg-black text-white rounded-full font-medium hover:bg-[#383838] dark:bg-white dark:text-black dark:hover:bg-[#ccc]">
+        Open
+      </button>
     </div>
   );
 }
