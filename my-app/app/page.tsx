@@ -1,11 +1,17 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Home() {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
   const products = [
-    { id: 1, name: "Premium Notebook", price: "$12.99", color: "bg-blue-100", icon: "📓" },
-    { id: 2, name: "Gel Pen Set", price: "$8.49", color: "bg-purple-100", icon: "✏️" },
-    { id: 3, name: "Highlighters Pack", price: "$6.99", color: "bg-yellow-100", icon: "🎨" },
-    { id: 4, name: "Backpack Pro", price: "$45.99", color: "bg-red-100", icon: "🎒" },
-    { id: 5, name: "Calculator", price: "$14.99", color: "bg-green-100", icon: "🧮" },
-    { id: 6, name: "Index Cards", price: "$4.99", color: "bg-pink-100", icon: "📇" },
+    { id: 1, name: "Premium Notebook", price: "$12.99", color: "bg-blue-100", icon: "📓", description: "High-quality 200-page notebook perfect for note-taking. Features smooth paper and durable binding. Available in multiple colors." },
+    { id: 2, name: "Gel Pen Set", price: "$8.49", color: "bg-purple-100", icon: "✏️", description: "Set of 12 smooth-writing gel pens in vibrant colors. Quick-drying ink and comfortable grip for extended writing sessions." },
+    { id: 3, name: "Highlighters Pack", price: "$6.99", color: "bg-yellow-100", icon: "🎨", description: "Pack of 6 neon highlighters with fluorescent ink. Perfect for marking important text in textbooks and notes." },
+    { id: 4, name: "Backpack Pro", price: "$45.99", color: "bg-red-100", icon: "🎒", description: "Spacious and ergonomic backpack with padded shoulder straps. Multiple compartments for books, laptop, and accessories. Water-resistant material." },
+    { id: 5, name: "Calculator", price: "$14.99", color: "bg-green-100", icon: "🧮", description: "Scientific calculator with 240 functions. Solar and battery powered. Perfect for algebra, trigonometry, and calculus." },
+    { id: 6, name: "Index Cards", price: "$4.99", color: "bg-pink-100", icon: "📇", description: "Pack of 100 index cards (3x5 inches). Plain white cards ideal for studying, flashcards, and organization." },
   ];
 
   return (
@@ -42,7 +48,7 @@ export default function Home() {
               <div className="p-6">
                 <h4 className="text-lg font-semibold text-black dark:text-white mb-2">{product.name}</h4>
                 <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4">{product.price}</p>
-                <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                <button onClick={() => setSelectedProduct(product)} className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                   Add to Cart
                 </button>
               </div>
@@ -56,6 +62,25 @@ export default function Home() {
           <p className="text-zinc-400">© 2024 SchoolHub. All rights reserved.</p>
         </div>
       </footer>
+
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-zinc-900 rounded-lg max-w-md w-full p-8">
+            <div className="text-6xl mb-4 text-center">{selectedProduct.icon}</div>
+            <h2 className="text-2xl font-bold text-black dark:text-white mb-2">{selectedProduct.name}</h2>
+            <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">{selectedProduct.price}</p>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed">{selectedProduct.description}</p>
+            <div className="flex gap-3">
+              <button onClick={() => setSelectedProduct(null)} className="flex-1 bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white py-2 rounded-lg font-medium hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">
+                Close
+              </button>
+              <button className="flex-1 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <button className="fixed bottom-6 left-6 px-4 py-2 bg-black text-white rounded-full font-medium hover:bg-[#383838] dark:bg-white dark:text-black dark:hover:bg-[#ccc]">
         Open
