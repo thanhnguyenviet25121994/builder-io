@@ -53,7 +53,7 @@ export default function Home() {
               {
                 icon: "☁️",
                 title: "Cloud Services",
-                desc: "Migrate and manage your infrastructure on AWS, Azure, or Google Cloud with expert guidance."
+                desc: "Migrate and manage your infrastructure on AWS, Azure, or Google Cloud with expert guidance. 123"
               },
               {
                 icon: "🔒",
