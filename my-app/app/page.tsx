@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showVisitPopup, setShowVisitPopup] = useState(false);
 
   const products = [
     { id: 1, name: "Premium Notebook", price: "$12.99", color: "bg-blue-100", icon: "📓", description: "High-quality 200-page notebook perfect for note-taking. Features smooth paper and durable binding. Available in multiple colors." },
@@ -27,11 +28,11 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 px-6">
+      <section className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-20 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-5xl font-bold mb-4">Fulbright University</h2>
           <p className="text-xl text-blue-100 mb-8">Everything you need for an amazing school year</p>
-          <button className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors">
+          <button onClick={() => setShowVisitPopup(true)} className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
             Visitnow
           </button>
         </div>
@@ -47,8 +48,8 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h4 className="text-lg font-semibold text-black dark:text-white mb-2">{product.name}</h4>
-                <p className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-4">{product.price}</p>
-                <button onClick={() => setSelectedProduct(product)} className="w-full bg-orange-600 text-white py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors">
+                <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4">{product.price}</p>
+                <button onClick={() => setSelectedProduct(product)} className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                   Add to Cart
                 </button>
               </div>
@@ -68,13 +69,13 @@ export default function Home() {
           <div className="bg-white dark:bg-zinc-900 rounded-lg max-w-md w-full p-8">
             <div className="text-6xl mb-4 text-center">{selectedProduct.icon}</div>
             <h2 className="text-2xl font-bold text-black dark:text-white mb-2">{selectedProduct.name}</h2>
-            <p className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-4">{selectedProduct.price}</p>
+            <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">{selectedProduct.price}</p>
             <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed">{selectedProduct.description}</p>
             <div className="flex gap-3">
               <button onClick={() => setSelectedProduct(null)} className="flex-1 bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white py-2 rounded-lg font-medium hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">
                 Close
               </button>
-              <button className="flex-1 bg-orange-600 text-white py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors">
+              <button className="flex-1 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                 Add to Cart
               </button>
             </div>
@@ -85,9 +86,28 @@ export default function Home() {
       <button className="fixed bottom-6 left-6 px-4 py-2 bg-black text-white rounded-full font-medium hover:bg-[#383838] dark:bg-white dark:text-black dark:hover:bg-[#ccc]">
         Open
       </button>
-      <button className="fixed bottom-6 right-6 px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-colors">
+      <button className="fixed bottom-6 right-6 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
         Get Started
       </button>
+
+      {showVisitPopup && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-zinc-900 rounded-lg max-w-md w-full p-8">
+            <h2 className="text-3xl font-bold text-black dark:text-white mb-4">Welcome to Fulbright University</h2>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6 leading-relaxed">
+              Discover world-class education and exceptional opportunities. Join our community of scholars and innovators transforming the future.
+            </p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowVisitPopup(false)} className="flex-1 bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white py-2 rounded-lg font-medium hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">
+                Close
+              </button>
+              <button className="flex-1 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
